@@ -23,6 +23,12 @@ def loss(ideal: list, actual: list):
         return loss
     else: raise Exception("Ideal outputs list is not the same length as actual output list")
 
+def derivative(value):
+    return value * (1.0 - value)
+
+def error(ideal, actual):
+    return (actual - ideal) * derivative(actual)
+
 # get data from training images file
 with open('samples/train-images-idx3-ubyte','rb') as f:
     magic, size = struct.unpack(">II", f.read(8))
